@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Liên hệ và đăng ký bản tin du lịch Đắk Lắk">
+<title>Liên hệ – Đắk Lắk Xanh</title>
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body data-page="contact">
+<header>
+  <nav id="nav" aria-label="Điều hướng chính">
+    <div class="nav-in">
+      <a href="index.html" class="logo-wrap">
+        <span class="logo-leaf" aria-hidden="true">🌿</span>
+        <span class="logo-text">
+          <span class="logo-main">Đắk Lắk Xanh</span>
+          <span class="logo-sub">Du lịch Sinh thái</span>
+        </span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-nav="home">Trang chủ</a></li>
+        <li><a href="destination.html" data-nav="dest">Điểm đến</a></li>
+        <li><a href="map.html" data-nav="map">Bản đồ</a></li>
+        <li><a href="guide.html" data-nav="guide">Hướng dẫn</a></li>
+        <li><a href="contact.html" data-nav="contact">Liên hệ</a></li>
+      </ul>
+      <div class="nav-search">
+        <label class="visually-hidden" for="nsearch">Tìm điểm đến</label>
+        <span class="si" aria-hidden="true">🔍</span>
+        <input type="search" id="nsearch" placeholder="Tìm điểm đến…" autocomplete="off">
+        <div id="sdrop" role="listbox" aria-label="Gợi ý tìm kiếm"></div>
+      </div>
+      <button type="button" class="ham" id="ham" aria-expanded="false" aria-controls="mob-menu" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div id="mob-menu" role="navigation" aria-label="Menu di động">
+    <a href="index.html" data-nav="home">Trang chủ</a>
+    <a href="destination.html" data-nav="dest">Điểm đến</a>
+    <a href="map.html" data-nav="map">Bản đồ</a>
+    <a href="guide.html" data-nav="guide">Hướng dẫn</a>
+    <a href="contact.html" data-nav="contact">Liên hệ</a>
+  </div>
+</header>
+<main>
+  <section id="newsletter" class="sec">
+    <div class="wrap">
+      <div class="nl-grid">
+        <div class="nl-txt" data-rv>
+          <p class="sec-tag">Liên hệ</p>
+          <h1 class="sec-h2">Nhận ưu đãi &amp; hành trình mới</h1>
+          <p class="sec-p">Đăng ký để nhận tour đặc biệt, lịch lễ hội cồng chiêng và mẹo du lịch từ HDV địa phương.</p>
+          <ul class="nl-benefits">
+            <li class="nl-b">Thông tin tour ưu đãi sớm nhất</li>
+            <li class="nl-b">Lịch lễ hội cồng chiêng</li>
+            <li class="nl-b">Bản đồ du lịch PDF miễn phí</li>
+          </ul>
+          <p><strong>Điện thoại:</strong> <a href="tel:+842623959959">0262 3 959 959</a><br>
+          <strong>Email:</strong> <a href="mailto:info@daklakxanh.vn">info@daklakxanh.vn</a></p>
+        </div>
+        <div data-rv data-d="2">
+          <form class="nl-form" id="nl-form" novalidate>
+            <div class="nl-row">
+              <label class="visually-hidden" for="nl-name">Họ và tên</label>
+              <input class="nli" type="text" id="nl-name" name="name" required placeholder="Họ và tên *" autocomplete="name">
+              <label class="visually-hidden" for="nl-phone">Số điện thoại</label>
+              <input class="nli" type="tel" id="nl-phone" name="phone" placeholder="Số điện thoại" autocomplete="tel">
+            </div>
+            <label class="visually-hidden" for="nl-email">Email</label>
+            <input class="nli" type="email" id="nl-email" name="email" required placeholder="Email *" autocomplete="email">
+            <label class="visually-hidden" for="nl-interest">Mối quan tâm</label>
+            <select class="nli" id="nl-interest" name="interest">
+              <option value="">-- Bạn quan tâm đến? --</option>
+              <option>Rừng &amp; Voi</option>
+              <option>Hồ &amp; Thác nước</option>
+              <option>Văn hóa &amp; Cồng chiêng</option>
+              <option>Cà phê &amp; Ẩm thực</option>
+              <option>Tất cả</option>
+            </select>
+            <label class="nl-ck">
+              <input type="checkbox" id="nl-agree" required>
+              Tôi đồng ý nhận thông tin và đã đọc chính sách bảo mật
+            </label>
+            <p class="nl-msg" id="nl-msg" role="alert"></p>
+            <button type="submit" class="btn btn-amber" id="nl-sub">Đăng ký ngay</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="ft-top">
+    <div class="ft-brand"><p class="logo-main">🌿 Đắk Lắk Xanh</p><p>Cổng thông tin du lịch sinh thái Đắk Lắk.</p></div>
+    <div class="ft-col"><h2>Điểm đến</h2><ul><li><a href="destination.html">Tất cả</a></li><li><a href="map.html">Bản đồ</a></li></ul></div>
+    <div class="ft-col"><h2>Thông tin</h2><ul><li><a href="guide.html">Cẩm nang</a></li><li><a href="contact.html">Liên hệ</a></li></ul></div>
+  </div>
+  <div class="ft-bot"><p>© 2025 Đắk Lắk Xanh</p></div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<button type="button" id="btt" title="Về đầu trang" aria-label="Về đầu trang">▲</button>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/script.js"></script>
+</body>
+</html>

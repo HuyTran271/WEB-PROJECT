@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Danh sách điểm đến du lịch sinh thái Đắk Lắk">
+<title>Điểm đến – Đắk Lắk Xanh</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body data-page="dest">
+<header>
+  <nav id="nav" aria-label="Điều hướng chính">
+    <div class="nav-in">
+      <a href="index.html" class="logo-wrap">
+        <span class="logo-leaf" aria-hidden="true">🌿</span>
+        <span class="logo-text">
+          <span class="logo-main">Đắk Lắk Xanh</span>
+          <span class="logo-sub">Du lịch Sinh thái</span>
+        </span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-nav="home">Trang chủ</a></li>
+        <li><a href="destination.html" data-nav="dest">Điểm đến</a></li>
+        <li><a href="map.html" data-nav="map">Bản đồ</a></li>
+        <li><a href="guide.html" data-nav="guide">Hướng dẫn</a></li>
+        <li><a href="contact.html" data-nav="contact">Liên hệ</a></li>
+      </ul>
+      <div class="nav-search">
+        <label class="visually-hidden" for="nsearch">Tìm điểm đến</label>
+        <span class="si" aria-hidden="true">🔍</span>
+        <input type="search" id="nsearch" placeholder="Tìm điểm đến…" autocomplete="off">
+        <div id="sdrop" role="listbox" aria-label="Gợi ý tìm kiếm"></div>
+      </div>
+      <button type="button" class="ham" id="ham" aria-expanded="false" aria-controls="mob-menu" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div id="mob-menu" role="navigation" aria-label="Menu di động">
+    <a href="index.html" data-nav="home">Trang chủ</a>
+    <a href="destination.html" data-nav="dest">Điểm đến</a>
+    <a href="map.html" data-nav="map">Bản đồ</a>
+    <a href="guide.html" data-nav="guide">Hướng dẫn</a>
+    <a href="contact.html" data-nav="contact">Liên hệ</a>
+  </div>
+</header>
+
+<main>
+  <section id="destination" class="sec">
+    <div class="wrap">
+      <header class="sec-hd vis" data-rv>
+        <p class="sec-tag">Khám phá</p>
+        <h1 class="sec-h2">Tất cả điểm đến</h1>
+        <p class="sec-p">Lọc và tìm kiếm điểm đến phù hợp với hành trình của bạn</p>
+      </header>
+
+      <div class="dsw vis" data-rv>
+        <label class="visually-hidden" for="dest-search">Tìm điểm đến</label>
+        <span class="si2" aria-hidden="true">🔍</span>
+        <input type="search" id="dest-search" placeholder="Tìm theo tên, địa điểm, mô tả…">
+      </div>
+
+      <div class="filter-bar vis" data-rv role="group" aria-label="Lọc danh mục">
+        <button type="button" class="fb on" data-cat="all">Tất cả</button>
+        <button type="button" class="fb" data-cat="rung">Rừng</button>
+        <button type="button" class="fb" data-cat="ho">Hồ &amp; Sông</button>
+        <button type="button" class="fb" data-cat="thac">Thác nước</button>
+        <button type="button" class="fb" data-cat="thanhPho">Thành phố</button>
+        <button type="button" class="fb" data-cat="sinhThai">Sinh thái</button>
+      </div>
+
+      <div class="dgrid" id="dgrid"></div>
+    </div>
+  </section>
+</main>
+
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" hidden>
+  <div class="mbox">
+    <div class="mgal" id="mgal">
+      <button type="button" class="gal-btn gal-prev" id="gprev" aria-label="Ảnh trước">◀</button>
+      <button type="button" class="gal-btn gal-next" id="gnext" aria-label="Ảnh sau">▶</button>
+      <div class="gdots" id="gdots"></div>
+      <button type="button" class="mcls" id="mcls" aria-label="Đóng">✕</button>
+    </div>
+    <div class="mbody">
+      <h2 id="m-title"></h2>
+      <p class="mmeta">
+        <span id="m-loc"></span>
+        <span id="m-rating"></span>
+        <span id="m-cat"></span>
+      </p>
+      <p class="mdesc" id="m-desc"></p>
+      <div class="mig">
+        <div class="mi"><p class="mi-lbl">Giá vé</p><p class="mi-val" id="m-price"></p></div>
+        <div class="mi"><p class="mi-lbl">Thời điểm</p><p class="mi-val" id="m-time"></p></div>
+        <div class="mi"><p class="mi-lbl">Thời gian</p><p class="mi-val" id="m-dur"></p></div>
+      </div>
+      <div class="mhls">
+        <h3>Điểm nổi bật</h3>
+        <ul id="m-highlights"></ul>
+      </div>
+      <div id="mmap" aria-label="Vị trí trên bản đồ"></div>
+    </div>
+  </div>
+</div>
+
+<footer id="contact">
+  <div class="ft-top">
+    <div class="ft-brand">
+      <p class="logo-main">🌿 Đắk Lắk Xanh</p>
+      <p>Cổng thông tin du lịch sinh thái tỉnh Đắk Lắk.</p>
+      <div class="ft-soc">
+        <a href="#" title="Facebook">Facebook</a>
+        <a href="#" title="YouTube">YouTube</a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h2>Điểm đến</h2>
+      <ul>
+        <li><a href="destination.html">Tất cả điểm đến</a></li>
+        <li><a href="map.html">Bản đồ</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h2>Thông tin</h2>
+      <ul>
+        <li><a href="guide.html">Cẩm nang</a></li>
+        <li><a href="contact.html">Liên hệ</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h2>Liên hệ</h2>
+      <ul>
+        <li>Buôn Ma Thuột, Đắk Lắk</li>
+        <li><a href="tel:+842623959959">0262 3 959 959</a></li>
+        <li><a href="mailto:info@daklakxanh.vn">info@daklakxanh.vn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <p>© 2025 Đắk Lắk Xanh</p>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<button type="button" id="btt" title="Về đầu trang" aria-label="Về đầu trang">▲</button>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/script.js"></script>
+</body>
+</html>

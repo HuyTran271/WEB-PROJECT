@@ -1,14 +1,326 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Cổng thông tin du lịch sinh thái Đắk Lắk – Khám phá Buôn Đôn, Hồ Lắk và hơn 20 điểm đến">
+<meta property="og:title" content="Du lịch Sinh thái Đắk Lắk">
+<title>Du lịch Sinh thái Đắk Lắk</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="../css/styles.css">
 </head>
+<body data-page="home">
 <header>
-    
+  <nav id="nav" aria-label="Điều hướng chính">
+    <div class="nav-in">
+      <a href="index.html" class="logo-wrap">
+        <span class="logo-leaf" aria-hidden="true">🌿</span>
+        <span class="logo-text">
+          <span class="logo-main">Đắk Lắk Xanh</span>
+          <span class="logo-sub">Du lịch Sinh thái</span>
+        </span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-nav="home">Trang chủ</a></li>
+        <li><a href="destination.html" data-nav="dest">Điểm đến</a></li>
+        <li><a href="map.html" data-nav="map">Bản đồ</a></li>
+        <li><a href="guide.html" data-nav="guide">Hướng dẫn</a></li>
+        <li><a href="contact.html" data-nav="contact">Liên hệ</a></li>
+      </ul>
+      <div class="nav-search">
+        <label class="visually-hidden" for="nsearch">Tìm điểm đến</label>
+        <span class="si" aria-hidden="true">🔍</span>
+        <input type="search" id="nsearch" placeholder="Tìm điểm đến…" autocomplete="off">
+        <div id="sdrop" role="listbox" aria-label="Gợi ý tìm kiếm"></div>
+      </div>
+      <button type="button" class="ham" id="ham" aria-expanded="false" aria-controls="mob-menu" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div id="mob-menu" role="navigation" aria-label="Menu di động">
+    <a href="index.html" data-nav="home">Trang chủ</a>
+    <a href="destination.html" data-nav="dest">Điểm đến</a>
+    <a href="map.html" data-nav="map">Bản đồ</a>
+    <a href="guide.html" data-nav="guide">Hướng dẫn</a>
+    <a href="contact.html" data-nav="contact">Liên hệ</a>
+  </div>
 </header>
-<body>
-    
+<main>
+<section id="hero" aria-label="Giá»›i thiá»‡u">
+  <div class="hero-slides">
+    <!-- Slide 1: Forest green -->
+    <div class="hs on">
+      <svg class="hs-scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <!-- Sky gradient -->
+        <defs>
+          <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0d2518"/>
+            <stop offset="100%" stop-color="#1a4a2d"/>
+          </linearGradient>
+        </defs>
+        <rect width="1440" height="900" fill="url(#sky1)"/>
+        <!-- Stars -->
+        <circle cx="200" cy="80" r="1.5" fill="rgba(255,255,255,.6)"/>
+        <circle cx="450" cy="50" r="1" fill="rgba(255,255,255,.5)"/>
+        <circle cx="900" cy="60" r="2" fill="rgba(255,255,255,.5)"/>
+        <circle cx="1200" cy="90" r="1.5" fill="rgba(255,255,255,.4)"/>
+        <!-- Mountains back -->
+        <polygon points="0,600 200,280 400,450 600,200 800,380 1000,180 1200,350 1440,250 1440,900 0,900" fill="#1a3828" opacity=".9"/>
+        <!-- Mountains mid -->
+        <polygon points="0,700 300,480 500,580 700,380 900,520 1100,300 1300,450 1440,380 1440,900 0,900" fill="#1d4030" opacity=".9"/>
+        <!-- Foreground hills -->
+        <ellipse cx="300" cy="820" rx="400" ry="150" fill="#162e20"/>
+        <ellipse cx="1100" cy="840" rx="450" ry="160" fill="#162e20"/>
+        <!-- Trees silhouette -->
+        <g fill="#0f2018">
+          <rect x="80" y="680" width="12" height="80" rx="4"/>
+          <polygon points="86,620 50,700 122,700"/>
+          <polygon points="86,650 55,710 117,710"/>
+          <rect x="160" y="670" width="14" height="90" rx="4"/>
+          <polygon points="167,600 128,688 206,688"/>
+          <polygon points="167,635 132,698 202,698"/>
+          <rect x="1300" y="660" width="12" height="95" rx="4"/>
+          <polygon points="1306,595 1268,680 1344,680"/>
+          <rect x="1370" y="675" width="10" height="82" rx="4"/>
+          <polygon points="1375,615 1340,696 1410,696"/>
+        </g>
+        <!-- Moon -->
+        <circle cx="1150" cy="130" r="45" fill="#fdf0c4" opacity=".85"/>
+        <circle cx="1165" cy="118" r="38" fill="#1a4a2d" opacity=".6"/>
+        <!-- Mist -->
+        <ellipse cx="720" cy="780" rx="600" ry="60" fill="rgba(180,220,200,.08)"/>
+      </svg>
+    </div>
+
+    <!-- Slide 2: Lake blue -->
+    <div class="hs">
+      <svg class="hs-scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0a1f3a"/>
+            <stop offset="60%" stop-color="#1a3d5a"/>
+            <stop offset="100%" stop-color="#2a5a78"/>
+          </linearGradient>
+          <linearGradient id="lake" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1e5878"/>
+            <stop offset="100%" stop-color="#0a2a3a"/>
+          </linearGradient>
+        </defs>
+        <rect width="1440" height="900" fill="url(#sky2)"/>
+        <!-- Stars -->
+        <circle cx="100" cy="60" r="2" fill="rgba(255,255,255,.7)"/>
+        <circle cx="350" cy="40" r="1.5" fill="rgba(255,255,255,.6)"/>
+        <circle cx="700" cy="55" r="2.5" fill="rgba(255,255,255,.5)"/>
+        <circle cx="1050" cy="70" r="1.5" fill="rgba(255,255,255,.6)"/>
+        <circle cx="1300" cy="45" r="2" fill="rgba(255,255,255,.5)"/>
+        <!-- Mountains -->
+        <polygon points="0,550 250,250 500,420 750,180 1000,350 1250,200 1440,320 1440,900 0,900" fill="#1a3848" opacity=".95"/>
+        <polygon points="0,650 300,420 550,530 800,320 1050,460 1300,310 1440,400 1440,900 0,900" fill="#1e4a5e" opacity=".9"/>
+        <!-- Lake reflection -->
+        <rect x="0" y="680" width="1440" height="220" fill="url(#lake)" opacity=".88"/>
+        <!-- Lake shimmer lines -->
+        <line x1="200" y1="720" x2="500" y2="720" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+        <line x1="700" y1="740" x2="1000" y2="740" stroke="rgba(255,255,255,.10)" stroke-width="1"/>
+        <line x1="400" y1="760" x2="800" y2="760" stroke="rgba(255,255,255,.08)" stroke-width="1.5"/>
+        <line x1="100" y1="780" x2="600" y2="780" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+        <line x1="900" y1="770" x2="1300" y2="770" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+        <!-- Moon reflection -->
+        <ellipse cx="720" cy="710" rx="8" ry="30" fill="rgba(255,248,200,.35)"/>
+        <circle cx="1050" cy="110" r="50" fill="#fdf0c4" opacity=".9"/>
+        <circle cx="1062" cy="98" r="42" fill="#1a3d5a" opacity=".5"/>
+        <!-- Boat silhouette -->
+        <path d="M600,695 Q720,680 840,695 L830,710 L610,710 Z" fill="#0a2030" opacity=".8"/>
+        <line x1="720" y1="680" x2="720" y2="640" stroke="#0a2030" stroke-width="3" opacity=".8"/>
+        <path d="M720,640 L680,668 L720,668 Z" fill="#0a2030" opacity=".7"/>
+      </svg>
+    </div>
+
+    <!-- Slide 3: Sunset / elephant country -->
+    <div class="hs">
+      <svg class="hs-scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="sky3" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1a0a05"/>
+            <stop offset="45%" stop-color="#5a2a10"/>
+            <stop offset="75%" stop-color="#c06020"/>
+            <stop offset="100%" stop-color="#e08030"/>
+          </linearGradient>
+          <radialGradient id="sun" cx="50%" cy="55%" r="40%">
+            <stop offset="0%" stop-color="#ffd060" stop-opacity=".9"/>
+            <stop offset="100%" stop-color="#c06020" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="1440" height="900" fill="url(#sky3)"/>
+        <ellipse cx="720" cy="500" rx="500" ry="450" fill="url(#sun)"/>
+        <!-- Setting sun disk -->
+        <ellipse cx="720" cy="510" rx="70" ry="68" fill="#ffd875" opacity=".9"/>
+        <ellipse cx="720" cy="538" rx="70" ry="30" fill="#5a2a10" opacity=".9"/>
+        <!-- Horizon hills -->
+        <polygon points="0,620 300,430 500,540 700,400 900,520 1150,380 1440,480 1440,900 0,900" fill="#2a1408" opacity=".9"/>
+        <polygon points="0,720 250,580 450,660 650,520 850,640 1100,480 1350,580 1440,540 1440,900 0,900" fill="#1a0d06" opacity=".9"/>
+        <!-- Ground -->
+        <rect x="0" y="780" width="1440" height="120" fill="#120a04"/>
+        <!-- Elephant silhouettes -->
+        <g fill="#0d0805" opacity=".95">
+          <!-- Elephant 1 (big) -->
+          <ellipse cx="280" cy="810" rx="65" ry="38"/>
+          <ellipse cx="260" cy="785" rx="30" ry="28"/>
+          <rect x="235" y="848" width="14" height="35" rx="6"/>
+          <rect x="255" y="850" width="14" height="32" rx="6"/>
+          <rect x="295" y="848" width="14" height="35" rx="6"/>
+          <rect x="315" y="852" width="12" height="30" rx="6"/>
+          <path d="M240,780 Q230,760 235,740 Q240,730 245,740 Q248,760 245,778" fill="#0d0805"/>
+          <circle cx="242" cy="773" r="4" fill="#0d0805"/>
+          <!-- Elephant 2 (small, far) -->
+          <ellipse cx="1100" cy="820" rx="40" ry="24"/>
+          <ellipse cx="1085" cy="802" rx="19" ry="17"/>
+          <rect x="1070" y="844" width="9" height="22" rx="4"/>
+          <rect x="1084" y="846" width="9" height="20" rx="4"/>
+          <rect x="1108" y="844" width="9" height="22" rx="4"/>
+          <rect x="1122" y="847" width="8" height="18" rx="4"/>
+          <path d="M1078,800 Q1071,786 1075,774 Q1079,767 1082,774 Q1083,785 1081,798" fill="#0d0805"/>
+        </g>
+        <!-- Baobab tree -->
+        <rect x="1320" y="660" width="18" height="140" rx="5" fill="#0d0805"/>
+        <ellipse cx="1329" cy="655" rx="48" ry="32" fill="#0d0805"/>
+        <!-- Birds -->
+        <path d="M400,320 Q410,312 420,320" stroke="#0d0805" stroke-width="2" fill="none"/>
+        <path d="M430,305 Q442,296 454,305" stroke="#0d0805" stroke-width="2" fill="none"/>
+        <path d="M380,290 Q390,282 400,290" stroke="#0d0805" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Hero overlay fix for readability -->
+  <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to right,rgba(10,25,16,.75) 0%,rgba(10,25,16,.35) 55%,rgba(10,25,16,.05) 100%)"></div>
+
+  <div class="hero-cnt">
+    <div class="hero-badge">🌿 Thiên nhiên hoang sơ · Văn hóa bản địa‹a</div>
+    <h1 class="hero-h1">
+      Khám phá<br><em>Đắk Lắk</em><br>Xanh & Hùng vĩ
+    </h1>
+    <p class="hero-p">Vùng cao nguyên bí ẩn với rừng nguyên sinh, hồ nước trong vắt, đàn voi hoang dã và nền văn hóa cồng chiêng UNESCO.</p>
+    <div class="hero-acts">
+      <a href="destination.html" class="btn btn-amber">Khám phá ngay</a>
+      <a href="map.html" class="btn btn-ghost">Xem bản đồ</a>
+    </div>
+  </div>
+
+  <!-- Slide dots -->
+  <div class="hdots" role="tablist" aria-label="Chọn slide">
+    <button type="button" class="hdot on" aria-label="Slide 1"></button>
+    <button type="button" class="hdot" aria-label="Slide 2"></button>
+    <button type="button" class="hdot" aria-label="Slide 3"></button>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="hero-stats">
+    <div class="hs-in">
+      <div class="stat">
+        <div class="stat-n" data-target="20" data-suffix="+">0</div>
+        <div class="stat-l">Điểm đến</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n" data-target="115000" data-suffix=" ha">0</div>
+        <div class="stat-l">Rừng bảo tồn</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n" data-target="47" data-suffix=" dân tộc">0</div>
+        <div class="stat-l">Cộng đồng</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n" data-target="500000" data-suffix="+">0</div>
+        <div class="stat-l">Lượt khách/năm</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--  FEATURED -->
+<section id="featured" class="sec">
+  <div class="wrap">
+    <div class="sec-hd" data-rv>
+      <span class="sec-tag"> Nổi bật</span>
+      <h2 class="sec-h2">Điểm đến không thể bỏ lỡ</h2>
+      <p class="sec-p">Những địa danh huyền thoại làm nên hồn thiêng của vùng đất Tây Nguyên</p>
+    </div>
+    <div class="feat-grid" data-rv>
+      <!-- Big card: Buôn Đôn -->
+      <article class="fc big" style="background:linear-gradient(135deg,#0d2518,#1a4a2d,#2d6a40)" data-id="1" tabindex="0" role="button" aria-label="Chi tiáº¿t BuĂ´n ÄĂ´n">
+        <div class="fc-bg" style="height:100%;background:inherit">đŸ˜</div>
+        <div class="fc-ov"></div>
+        <div class="fc-cnt">
+          <span class="fc-tag">Rừng & Voi</span>
+          <h3 class="fc-h3">Vườn Quốc gia Buôn Đôn</h3>
+          <p class="fc-desc">Vùng đất huyền thoại của người Mnông với nghề thuần dưỡng voi. Rừng nguyên sinh hơn 115.000 ha.</p>
+        </div>
+      </article>
+      <article class="fc sm" style="background:linear-gradient(135deg,#0a1f2e,#1a3d5a,#2a5e7a)" data-id="2" tabindex="0" role="button" aria-label="Chi tiáº¿t Há»“ Láº¯k">
+        <div class="fc-bg" style="height:100%;background:inherit">🏞️</div>
+        <div class="fc-ov"></div>
+        <div class="fc-cnt">
+          <span class="fc-tag">Hồ thiên nhiên</span>
+          <h3 class="fc-h3">Hồ Lắk</h3>
+          <p class="fc-desc">Hồ tự nhiên lớn nhất Tây Nguyên – khung cảnh thơ mộng.</p>
+        </div>
+      </article>
+      <article class="fc sm" style="background:linear-gradient(135deg,#1a1a0a,#3a3a10,#5a6020)" data-id="3" tabindex="0" role="button" aria-label="Chi tiáº¿t BuĂ´n Ma Thuá»™t">
+        <div class="fc-bg" style="height:100%;background:inherit">â˜•</div>
+        <div class="fc-ov"></div>
+        <div class="fc-cnt">
+          <span class="fc-tag">Thành phố cà phê</span>
+          <h3 class="fc-h3">TP. Buôn Ma Thuột</h3>
+          <p class="fc-desc">Thủ phủ cà phê Việt Nam với Bảo tàng Thế giới Cà phê.</p>
+        </div>
+      </article>
+    </div>
+    <p class="sec-p" style="text-align:center;margin-top:2rem">
+      <a href="destination.html" class="btn btn-green">Xem tất cả điểm đến</a>
+      <a href="guide.html" class="btn btn-ghost" style="margin-left:.5rem">Cẩm nang du lịch</a>
+    </p>
+  </div>
+</section>
+</main>
+
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" hidden>
+  <div class="mbox">
+    <div class="mgal" id="mgal">
+      <button type="button" class="gal-btn gal-prev" id="gprev" aria-label="Ảnh trước">◀</button>
+      <button type="button" class="gal-btn gal-next" id="gnext" aria-label="Ảnh sau">▶</button>
+      <div class="gdots" id="gdots"></div>
+      <button type="button" class="mcls" id="mcls" aria-label="Đóng">✕</button>
+    </div>
+    <div class="mbody">
+      <h2 id="m-title"></h2>
+      <p class="mmeta"><span id="m-loc"></span><span id="m-rating"></span><span id="m-cat"></span></p>
+      <p class="mdesc" id="m-desc"></p>
+      <div class="mig">
+        <div class="mi"><p class="mi-lbl">Giá vé</p><p class="mi-val" id="m-price"></p></div>
+        <div class="mi"><p class="mi-lbl">Thời điểm</p><p class="mi-val" id="m-time"></p></div>
+        <div class="mi"><p class="mi-lbl">Thời gian</p><p class="mi-val" id="m-dur"></p></div>
+      </div>
+      <div class="mhls"><h3>Điểm nổi bật</h3><ul id="m-highlights"></ul></div>
+      <div id="mmap" aria-label="Vị trí trên bản đồ"></div>
+    </div>
+  </div>
+</div>
+
+<footer id="contact">
+  <div class="ft-top">
+    <div class="ft-brand"><p class="logo-main">🌿 Đắk Lắk Xanh</p><p>Cổng thông tin du lịch sinh thái Đắk Lắk.</p></div>
+    <div class="ft-col"><h2>Điểm đến</h2><ul><li><a href="destination.html">Tất cả</a></li><li><a href="map.html">Bản đồ</a></li></ul></div>
+    <div class="ft-col"><h2>Thông tin</h2><ul><li><a href="guide.html">Cẩm nang</a></li><li><a href="contact.html">Liên hệ</a></li></ul></div>
+  </div>
+  <div class="ft-bot"><p>© 2025 Đắk Lắk Xanh</p></div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<button type="button" id="btt" title="Về đầu trang" aria-label="Về đầu trang">▲</button>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/script.js"></script>
 </body>
 </html>
