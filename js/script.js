@@ -311,19 +311,25 @@
         popupAnchor: [0, -44]
       });
       var m = L.marker([d.lat, d.lng], { icon: icon }).addTo(lmap);
+      var imgHtml = d.img && d.img.length > 0 
+        ? '<div class="pop-banner" style="background-image:url(' + d.img[0] + '); height: 120px; background-size: cover; background-position: center;"></div>'
+        : '';
       m.bindPopup(
-        '<div class="pop-in"><p class="pcat">' +
-          d.catL +
-          '</p><h3>' +
-          d.name +
-          '</h3><p>' +
-          d.desc.slice(0, 85) +
-          '…</p><p class="pmeta"><span>★ ' +
-          d.rating +
-          '</span></p><button type="button" class="pop-btn" data-pop-id="' +
-          d.id +
-          '">Xem chi tiết</button></div>',
-        { className: 'lpop', maxWidth: 240 }
+        imgHtml +
+        '<div class="pop-in">' +
+          '<p class="pcat">' + d.catL + '</p>' +
+          '<h3>' + d.name + '</h3>' +
+          '<div class="pop-rating" style="margin-bottom:0.4rem;"><span class="stars">' + starStr(d.rating) + '</span> <span style="font-weight:700; color:var(--text2); font-size:0.78rem;">' + d.rating + ' (' + d.rev + ')</span></div>' +
+          '<p class="pdesc" style="font-size:0.78rem; line-height:1.4; margin-bottom:0.6rem;">' + d.desc.slice(0, 85) + '…</p>' +
+          '<div class="pdetails" style="display:flex; flex-direction:column; gap:0.35rem; margin-bottom:0.75rem; border-top:1px dashed var(--cream2); padding-top:0.6rem;">' +
+            '<div class="pdet-item" style="font-size:0.75rem; line-height:1.35; color:var(--text);"><span class="pdet-icon" style="margin-right:0.3rem;">📍</span><strong>Địa chỉ:</strong> <span class="pdet-val" style="color:var(--text2);">' + d.address + '</span></div>' +
+            '<div class="pdet-item" style="font-size:0.75rem; line-height:1.35; color:var(--text);"><span class="pdet-icon" style="margin-right:0.3rem;">🎫</span><strong>Giá vé:</strong> <span class="pdet-val" style="color:var(--text2);">' + d.price + '</span></div>' +
+            '<div class="pdet-item" style="font-size:0.75rem; line-height:1.35; color:var(--text);"><span class="pdet-icon" style="margin-right:0.3rem;">⏱️</span><strong>Thời lượng:</strong> <span class="pdet-val" style="color:var(--text2);">' + d.dur + '</span></div>' +
+            '<div class="pdet-item" style="font-size:0.75rem; line-height:1.35; color:var(--text);"><span class="pdet-icon" style="margin-right:0.3rem;">📅</span><strong>Mùa đẹp:</strong> <span class="pdet-val" style="color:var(--text2);">' + d.bestTime + '</span></div>' +
+          '</div>' +
+          '<button type="button" class="pop-btn" data-pop-id="' + d.id + '" style="margin-top: 0; width: 100%; justify-content: center; display: flex;">Xem chi tiết</button>' +
+        '</div>',
+        { className: 'lpop', maxWidth: 280 }
       );
       mmarkers.push({ m: m, d: d });
     });
