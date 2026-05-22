@@ -242,7 +242,7 @@
         '<div class="dcard-img"><div class="dcard-emo" style="background:' +
           bgFor(d.cat) +
           '">' +
-          d.emo +
+          (d.img && d.img.length > 0 ? '<img src="' + d.img[0] + '" alt="' + d.name + '" style="width:100%;height:100%;object-fit:cover;">' : d.emo) +
           '</div><span class="dcard-cat">' +
           d.catL +
           '</span><button type="button" class="dcard-fav" data-id="' +
@@ -398,15 +398,21 @@
 
     var $gal = $('#mgal');
     $gal.find('.mslide').remove();
-    d.gal.forEach(function (em, i) {
+
+    var gallery = Array.isArray(d.img) ? d.img : (d.img ? [d.img] : []);
+    gallery.forEach(function (src, i) {
       var $s = $('<div class="mslide"></div>');
       if (i === 0) $s.addClass('on');
-      $s.css({ background: bgFor(d.cat), fontSize: '8rem' }).text(em);
+      $s.css({
+        backgroundImage: 'url(' + src + ')',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      });
       $gal.prepend($s);
     });
 
     var $gdots = $('#gdots').empty();
-    d.gal.forEach(function (_, i) {
+    gallery.forEach(function (_, i) {
       var $dot = $('<button type="button" class="gdot"></button>');
       if (i === 0) $dot.addClass('on');
       $dot.on('click', function () {
@@ -417,7 +423,7 @@
     gi = 0;
 
     function goGal(n) {
-      gi = (n + d.gal.length) % d.gal.length;
+      gi = (n + gallery.length) % gallery.length;
       $gal.find('.mslide').each(function (i) {
         $(this).toggleClass('on', i === gi);
       });
