@@ -9,7 +9,7 @@
 
 <p align="center">
   <strong>Cổng thông tin & Bản đồ số tương tác dành cho Du lịch Sinh thái Đắk Lắk.</strong><br>
-  An eco-tourism web-app for Dak Lak province, leveraging pure Front-end technologies and open-source spatial data APIs.
+  An eco-tourism web for Dak Lak province, leveraging pure Front-end technologies and open-source spatial data APIs.
 </p>
 
 <p align="center">
@@ -22,7 +22,7 @@
 
 ---
 
-## 📸 Giao diện ứng dụng
+## 📸 Giao diện web
 
 <p align="center">
   <img src="readme-img.png" width="100%" alt="DakLak Green UI Banner Mockup" />
