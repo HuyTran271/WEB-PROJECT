@@ -25,7 +25,7 @@
 ## 📸 Giao diện ứng dụng
 
 <p align="center">
-  <img src="https://images.unsplash.com/photo-1583244532610-2a234e7c3eca?q=80&w=1200&auto=format&fit=crop" width="100%" alt="DakLak Green UI Banner Mockup" />
+  <img src="readme-img.png" width="100%" alt="DakLak Green UI Banner Mockup" />
   <br>
   <em>Giao diện lưới thẻ bài điểm đến và Bản đồ không gian thông minh tương thích đa nền tảng (Responsive Design)</em>
 </p>
