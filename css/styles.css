@@ -34,6 +34,7 @@ body[data-page]:not([data-page='home']) #nav {
 }
 
 /* ─── RESET & ROOT ─── */
+/* Common reset and base styles used across all pages (box-sizing, fonts, scroll). */
 *,
 *::before,
 *::after {
@@ -87,6 +88,7 @@ h4 {
 }
 
 /* ─── VARIABLES ─── */
+/* Global theme variables: colors, radii, shadows, transitions. */
 :root {
   --g1: #1a3828;
   --g2: #2d5a3d;
@@ -109,6 +111,7 @@ h4 {
 }
 
 /* ─── NAVBAR ─── */
+/* Site-wide fixed header: desktop + mobile behaviors, search, and mobile menu. */
 #nav {
   position: fixed;
   top: 0;
@@ -329,6 +332,7 @@ h4 {
 }
 
 /* ─── HERO ─── */
+/* Full-screen hero slide area (page-specific but commonly used on homepage). */
 #hero {
   position: relative;
   height: 100vh;
@@ -527,6 +531,7 @@ h4 {
 }
 
 /* ─── BUTTONS ─── */
+/* Reusable button styles and variants for CTA consistency. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -584,6 +589,7 @@ h4 {
 }
 
 /* ─── SECTION COMMONS ─── */
+/* Shared section layout (spacing, container, headings) used by multiple pages. */
 .sec {
   padding: 5rem 2rem;
 }
@@ -625,6 +631,7 @@ h4 {
 }
 
 /* ─── DESTINATIONS ─── */
+/* List/grid components for destination cards and filters (reusable card patterns). */
 #destinations {
   background: #fff;
 }
@@ -829,6 +836,7 @@ h4 {
 }
 
 /* ─── FEATURED / HERO CARDS ─── */
+/* Large spotlight cards used in hero/featured areas (overlay, scale effects). */
 #featured {
   background: var(--cream);
 }
@@ -924,6 +932,7 @@ h4 {
 }
 
 /* ─── MAP SECTION ─── */
+/* Map container and popups; floating filter panel styles for the map page. */
 #map-sec {
   background: var(--g1);
 }
@@ -1083,6 +1092,7 @@ h4 {
 }
 
 /* ─── GUIDE SECTION ─── */
+/* Guide layout, tips, and FAQ accordion — mostly page-specific but uses common utilities. */
 #guide {
   background: var(--cream2);
 }
@@ -1265,6 +1275,7 @@ h4 {
 }
 
 /* ─── NEWSLETTER ─── */
+/* Newsletter block styles with gradient background and form controls. */
 #newsletter {
   background: linear-gradient(135deg, var(--g1) 0%, var(--g2) 100%);
   position: relative;
@@ -1398,6 +1409,7 @@ h4 {
 }
 
 /* ─── MODAL ─── */
+/* Modal and gallery overlays, animations, and controls used site-wide. */
 #modal {
   display: none;
   position: fixed;
@@ -1634,6 +1646,7 @@ h4 {
 }
 
 /* ─── FOOTER ─── */
+/* Site footer: dark theme, grid layout, social icons. */
 footer {
   background: var(--g1);
   color: rgba(255, 255, 255, 0.72);
@@ -1717,6 +1730,7 @@ footer {
 }
 
 /* ─── UTILITIES ─── */
+/* Small utility helpers and JS-driven classes (reveal, toast, btt). */
 [data-rv] {
   opacity: 0;
   transform: translateY(28px);
@@ -1805,6 +1819,7 @@ footer {
 }
 
 /* ─── RESPONSIVE ─── */
+/* Breakpoints and responsive adjustments for layout and navigation. */
 @media (max-width: 1024px) {
   .guide-grid {
     grid-template-columns: 1fr;
